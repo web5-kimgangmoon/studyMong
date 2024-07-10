@@ -7,6 +7,7 @@ import multer from "multer";
 import useSocket from "./socket/useSocket";
 
 import router from "./controllers/index";
+import db, { sequelize } from "./models/sequelize/index";
 
 dotenv.config();
 
@@ -46,6 +47,20 @@ const upload = (imgs: string) =>
 // } )
 
 app.use("/api", router);
+
+(async () => {
+  await sequelize.sync();
+  const newUser = await db.User.create({
+    name: "Jonny",
+  });
+  console.log(newUser.id, newUser.name);
+
+  const Board = await newUser.createBoard({
+    title: "first",
+    content: "Hello World!",
+    writer: newUser.name,
+  });
+})();
 
 server.listen(app.get("port"), () => {
   console.log("server opens ", app.get("port"));
