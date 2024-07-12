@@ -18,18 +18,22 @@ const CustomMap = (): JSX.Element => {
     const neLatLng = bounds.getNorthEast();
     const boundsStr = bounds.toString();
     const mapProjection = map.getProjection();
-    let congnamul = mapProjection
-      .coordsFromPoint(new kakao.maps.Point(0, 0))
-      .toCoords();
-    let congnamul2 = mapProjection
-      .coordsFromPoint(new kakao.maps.Point(1, 0))
-      .toCoords();
-    let congnamul3 = mapProjection
-      .coordsFromPoint(new kakao.maps.Point(2, 0))
-      .toCoords();
-    let congnamul4 = mapProjection
-      .coordsFromPoint(new kakao.maps.Point(10, 0))
-      .toCoords();
+    let congnamul = new kakao.maps.LatLng(
+      map.getCenter().getLat(),
+      map.getCenter().getLng()
+    ).toCoords();
+    let congnamul2 = new kakao.maps.LatLng(
+      map.getCenter().getLat() + 1,
+      map.getCenter().getLng()
+    ).toCoords();
+    let congnamul3 = new kakao.maps.LatLng(
+      map.getCenter().getLat() + 2,
+      map.getCenter().getLng()
+    ).toCoords();
+    let congnamul4 = new kakao.maps.LatLng(
+      map.getCenter().getLat() + 10,
+      map.getCenter().getLng()
+    ).toCoords();
     // let point = mapProjection.coordsFromPoint(new kakao.maps.Point(0, 0));
     // let point2 = mapProjection.coordsFromPoint(new kakao.maps.Point(1, 0));
     // let point3 = mapProjection.coordsFromPoint(new kakao.maps.Point(0, 2));
